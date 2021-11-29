@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="generator" content="ScreenSteps http://www.screensteps.com/" /><title>Extrair legendas fixas (hardsub) de vídeos usando OCR</title>
+	
+	<link href="css/black_bg.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="css/prettyPhoto.css" media="screen" rel="stylesheet" type="text/css" charset="utf-8" />
+	<script src="js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8" />
+  <script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8" />
+  <script type="text/javascript" charset="utf-8">
+  		$(document).ready(function(){
+  			$("a[rel^='prettyPhoto']").prettyPhoto({
+  			  show_title: false
+  			}); 
+  		}); 	
+  	</script></head><body class="lucida">
+	<div id="wrapper">		
+		<div id="LessonContent">
+			<div class="LessonHeader">
+				<h1 class="LessonTitle">Extrair legendas fixas (hardsub) de vídeos usando OCR</h1>
+			</div>
+				<div class="summary">
+<div style="text-align: center;">
+		</div>
+<p style="text-align: center;"><strong>Created with a ScreenSteps</strong></p><p style="text-align: center;"><strong><u>Extrair legendas fixas (hardsub) de vídeos usando OCR</u></strong></p>
+
+
+<p>Vídeo OCR é uma tecnologia que pode detectar e recuperar as legendas
+de um vídeo quando elas são fixadas no mesmo. Pode ser conveniente, por
+exemplo, quando você deseja transpor um vídeo de definição baixa para
+um formato Blu-ray e quer recuperar as legendas para economizar tempo.</p>
+
+
+<p>Note-se que esta técnica não funciona em legendas usando fontes (letras) exóticas.</p>
+
+
+<p>Eu aprendi esta técnica em um dos poucos tutoriais encontráveis na
+época usando o google, mas parece que ele não está mais disponível.
+Vamos começar com os pré-requisitos.</p>
+<p>&nbsp;</p>
+<p>Ferramentas necessárias:</p>
+
+
+<p>- VideoSubFinder<br />
+- FineReader (eu uso o FineReader 12,mas também é possivel usar as
+versões mais antigas). Você pode encontrá-lo aqui, nos sites de
+torrent, comprá-lo da ABBYY, ou qualquer outro medo que você escolha.<br />
+- Aegisub</p>
+
+
+<p>Vantagens:</p>
+
+
+<p>- Não exige muita interação por parte do usuário até chegar na verificação de erros no Aegisub.<br />
+- Não tem problemas com legendas multicoloridas e até mesmo cria diferentes estilos ASS tentando imitar as cores originais.<br />
+- Verifica as legendas em qualquer parte da tela, seja superior, inferior ou no meio.<br />
+- O uso de padrões personalizados no FineReader, podem ser treinados
+para reconhecer fontes extravagantes/não padronizadas com qualidade
+aceitável.</p>
+
+
+<p>Desvantagens / Advertências:</p>
+
+
+<p>- O programa é muito lento e às vezes trava.<br />
+- Algumas linhas podem não ser detectadas. Isto não é muito
+frequentemente e é fácil de pegar durante o fase de scenetiming / QC.<br />
+- Quando duas linhas são muito semelhantes em formato e aparecem uma
+após a outra, sem oscilação, o VSF muitas vezes não reconhece que as
+linhas são diferentes, faz o OCR da primeira linha e estende o seu
+tempo para o fim da segunda linha. Este é o erro que eu mais odeio,
+porque você não consegue vê-lo durante a verificação de erros no
+Aegisub e você ainda pode ignorá-lo mais tarde durante o estágio de
+scenetiming / QC se você não estiver atento o suficiente.</p>
+
+
+<p>Exemplo: Yakitate Japan ep7 - 06:18 - duas linhas curtas "This
+taste..." / "This filling..." foram reconhecidos como uma só linha
+"This taste...", que se estende por ambas as frases. Algo bom é que
+isso não acontece muitas vezes, talvez uma vez a cada 10 episódios, em
+média.</p>
+
+
+<p>(A propósito, se você transcrever as legendas usando legendas russas
+como modelo, você também deve ter cuidado com esta situação, pois um
+monte de legendas russas foram criados a partir de legendas hardsub em
+Inglês usando o VSF e tais erros eram às vezes deixados sem correção.
+Eu encontrei isso várias vezes.)</p>	
+	</div>
+			
+				<div id="step_1" class="lessonStep top">
+	        <h2 class="StepTitle">Iniciando o VideoSubFinder</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435937231887_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435937231887.png" alt="Iniciando o VideoSubFinder" height="405" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435937231887_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Inicie o VideoSubFinder. Normalmente eu vou para a aba Settings e desmarco a opção "<strong>Using fast version (partially reduced)</strong>",
+fica a seu critério fazer isso, pois eu não tenho certeza que isso
+realmente faz alguma diferença. Deixo todas as outras definições nos
+valores predefinidos.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_2" class="lessonStep top">
+	        <h2 class="StepTitle">Abrir Video Hardsub</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435806179564_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435806179564.png" alt="Abrir Video Hardsub" height="411" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435806179564_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>2. Abra o arquivo de vídeo com as legendas embutidas (hardsub), usando o item de Menu -&gt; File -&gt; Open Video All Default</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_3" class="lessonStep top">
+	        <h2 class="StepTitle">Selecionar Arquivo na Pasta</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435866310708_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435866310708.png" alt="Selecionar Arquivo na Pasta" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435866310708_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Selecione o arquivo hardsub
+(*.avi, *.mp4, *.mkv, *.mpg e etc...) que você quer extrair a legenda e
+clique em Abrir, neste exemplo usamos o primeiro episódio do anime Twin
+Spica feito pelo fansub Anime-Fansubs (inglês).</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_4" class="lessonStep top">
+	        <h2 class="StepTitle">Definindo tempo de início e fim (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435806267819_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435806267819.png" alt="Definindo tempo de início e fim (Opcional)" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435806267819_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Clicando em Edit temos as
+opções para defnir o tempo de ínicio e término da procura por legendas,
+isto é útil para ganhamos tempo, quando só queremos os dialógos e nada
+mais, ou quando a abertura e o encerramento são os mesmos, então só
+precisamos capturar uma vez e ir ajustando no Aegisub para cada
+episódio. 2. Definimos o ponto de ínicio deslizando a barra do vídeo
+até o ponto onde queremos, depois no menu Edit clicamos em "Set Begin
+Time" ou usamos o atalho Ctrl + Z, depois deslizamos a mesma barra do
+vídeo até o ponto de de termino e selecionamos no menu Edit a opção
+"Set End Time" ou usamos o atalho Ctrl + X. 3. A marcação de início e
+fim que fizemos aparecerá na aba Search logo acima das opções "Clear
+Folders" e "Run Search". Nota: Esta etapa é opcional, você só faz se
+achar que é necessário ou que vale a pena no seu caso.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_5" class="lessonStep top">
+	        <h2 class="StepTitle">Definindo a área da legenda</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435951170078_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435951170078.png" alt="Definindo a área da legenda" height="405" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435951170078_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> 
+	</div>
+	<div class="clear" />
+	<div id="step_6" class="lessonStep top">
+	        <h2 class="StepTitle">Definindo a área da legenda</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/VSF04_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/VSF04.png" alt="Definindo a área da legenda" height="405" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/VSF04_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Nesta etapa vamos definir a
+área onde o programa irá procurar a legenda, esta estapa serve para
+melhorar o reconhecimento da legenda, o tempo de procura e diminuir a
+quantidade de lixo que o program detecta como sendo uma legenda no
+vídeo. <strong>1.</strong> Posicionamos o cursor na borda superior do
+vídeo, pressione o botão esquerdo e mantenha pressionado, e vá baixando
+até perto da área onde as legendas estão. <strong>2.</strong> Quando
+estiver no ponto que você quer e só parar de pressionar, se quisemos
+pegar a legenda que está na parte de cima do vídeo então fazemos o
+contrário, posicionamos na borda inferior do vídeo e elevamos até perto
+de onde as legendas estão aparecendo. </p>
+
+
+<p><strong>Dica:</strong> Lembrem-se sempre de procurar um trecho onde
+tenha 2 linhas de legenda aparecendo, assim você evitar pegar só uma
+parte da legenda que aparece naquele momento.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_7" class="lessonStep top">
+	        <h2 class="StepTitle">Iniciando o processo de escaneamento</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435948932078_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435948932078.png" alt="Iniciando o processo de escaneamento" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435948932078_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Pressione "Clear Folders" na guia Search. Não se esqueça de fazer isso depois de carregar qualquer novo arquivo de vídeo.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_8" class="lessonStep top">
+	    
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436209598611_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436209598611.png" alt="" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436209598611_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Pressione o botão "Run
+Search" na guia Search. Este processo é bastante demorado
+(especialmente se você desmarcou a opção "Using fast version"), então
+recomendo ir fazer outra coisa até que esta etapa seja concluída.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_9" class="lessonStep top">
+	        <h2 class="StepTitle">Apagar imagens sem dialógos</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435981260697_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435981260697.png" alt="Apagar imagens sem dialógos" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435981260697_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Após a conclussão da etapa
+anterior o tutorial russo no qual me baseei, aconselha examinar as
+imagens na pasta RBGImages, usando um visualizador de imagens a procura
+de falsos positivos, isto é imagens sem nenhuma legenda, devem também
+eliminar a OP/ED do karaokê e qualquer caractere não romanizado (letras
+em japonês, chinês e etc..). Pois não serão reconhecidas de qualquer
+maneira (a não ser que não usem fontes exóticas). Mas se quiser os
+tempos do karaokê também, então isso não é necessário.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_10" class="lessonStep top">
+	        <h2 class="StepTitle">Esta etapa é opcional, só deve ser feita se quiser apenas os tempos da legenda!</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435970159312_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435970159312.png" alt="Esta etapa é opcional, só deve ser feita se quiser apenas os tempos da legenda!" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435970159312_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Se você só quiser pegar só
+os tempos do vídeo, pode clicar na Opção "Create Empty Sub" ao invés da
+"Create Cleared TXT Images". </p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_11" class="lessonStep top">
+	        <h2 class="StepTitle">Esta etapa é opcional, só deve ser feita se quiser apenas os tempos da legenda!</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435978565557_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435978565557.png" alt="Esta etapa é opcional, só deve ser feita se quiser apenas os tempos da legenda!" height="183" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435978565557_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>No  pasta  em  que  o  programa  foi  instalado/descompactado,  você  verá  que  um arquivo “<strong><font color="#ff0000">sub.srt</font></strong>”
+foi criado. Este arquivo contém o tempo de início e final de cada linha
+de dialógo, assim como a duração de cada um. Essa opção é ideal para
+quem quer traduzir de ouvido direto do idioma original, e não quer
+perder tempo criando os timings de cada fala um por um, ou tem um
+script no idioma nativo ou em outro idioma. Caso queira a legenda
+completa com tempos e falas, você pode pular esta etapa e ir direto
+para a próxima.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_12" class="lessonStep top">
+	        <h2 class="StepTitle">Preparando imagens para o FineReader</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435844934172_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435844934172.png" alt="Preparando imagens para o FineReader" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435844934172_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p><strong>1.</strong> Depois de
+terminado o processo anterior, vá a Aba OCR. <strong>2.</strong> Clique na opção "Creat Cleared TXT Images" e espere o processo ser completado</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_13" class="lessonStep top">
+	        <h2 class="StepTitle">Preparando imagens para o FineReader</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435839225343_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435839225343.png" alt="Preparando imagens para o FineReader" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435839225343_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Após finalizado o processo de
+criação das imagens com os diálogos, abra o FineReader, mas não feche o
+VSF ainda pois ele ainda será necessário, se por algum motivo você não
+puder mexer no próximo passo depois disso, você pode fechar o VSF e
+desde que você não apague os arquivos criados e nem abra um outro vídeo
+e mande o programa escanéa-lo, poderá recomeçar em qualquer outro
+momento sem prejuízo para todo o trabalho já realizado.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_14" class="lessonStep top">
+	        <h2 class="StepTitle">Verificando o resultado na pasta TXTImages</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435841667450_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435841667450.png" alt="Verificando o resultado na pasta TXTImages" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435841667450_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Você pode verificar que na
+pasta “TXTImages” na pasta em que o programa está instalado ou
+descompactado, haverá uma imagem para cada uma das linhas de dialógos
+que serão interpretadas pelo ABBYY FineReader, igual a imagem logo
+acima e na imagem de baixo.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_15" class="lessonStep top">
+	        <h2 class="StepTitle">ABBY FineReader (Transformando as imagens em texto)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435972119792_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435972119792.png" alt="ABBY FineReader (Transformando as imagens em texto)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435972119792_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Agora execute o <strong>ABBYY FineReader</strong>,
+selecione o idioma que está nas imagens que você escaneou no VSF, isto
+é necessário para agilizar o processamento das imagens, depois clique
+em <strong>Abrir </strong>ou use o atalho Ctrl + O.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_16" class="lessonStep top">
+	        <h2 class="StepTitle">ABBY FineReader (Transformando as imagens em texto)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435890397358_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435890397358.png" alt="ABBY FineReader (Transformando as imagens em texto)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435890397358_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Depois vá até a pasta “<strong>TXTImages</strong>” e selecione todas as imagens que estiverem lá, você pode usar o atalho <strong>Ctrl + A</strong> para isso e depois clique no botão <strong>Abrir.</strong></p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_17" class="lessonStep top">
+	        <h2 class="StepTitle">ABBY FineReader (Transformando as imagens em texto)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885063824_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885063824.png" alt="ABBY FineReader (Transformando as imagens em texto)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885063824_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Na imagem acima o programa está
+processando cada uma das imagens que estava na pasta, as imagens que
+derem problema o programa informa e identifica as imagens com um
+triângulo amarelo. O FineReader identifica as partes mais difíceis de
+se converter grifando em azul.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_18" class="lessonStep top">
+	        <h2 class="StepTitle">ABBY FineReader (Transformando as imagens em texto)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435973933942_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435973933942.png" alt="ABBY FineReader (Transformando as imagens em texto)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435973933942_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>O programa identificou
+corretamente o que estava na imagem, mas ficou em dúvida e grifou de
+azul para chamar a atenção do usuário, e isso se repete com muita
+frequência, então é melhor checar com o AegiSub.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_19" class="lessonStep top">
+	        <h2 class="StepTitle">ABBY FineReader (Transformando as imagens em texto)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885476044_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885476044.png" alt="ABBY FineReader (Transformando as imagens em texto)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885476044_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Agora é hora de Salvar os arquivos, Clique na guia “<strong>Arquivo</strong>”, “<strong>Salvar o Documento como</strong>”, “<strong>Documento de texto</strong>”.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_20" class="lessonStep top">
+	        <h2 class="StepTitle">ABBY FineReader (Transformando as imagens em texto)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885752162_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885752162.png" alt="ABBY FineReader (Transformando as imagens em texto)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885752162_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Para a versão 12 --&gt;
+Selecione como local para salvar os arquivos a pasta “TXTResults”
+localizada onde o programa VideoSubFinder foi instalado, selecione em
+"Opções de arquivo" a opção “Criar um arquivo separado para cada
+arquivo de origem” e depois clique em “Salvar”. Para a versão 11 --&gt;
+Selecione como local para salvar os arquivos a pasta “TXTResults”
+localizada onde o programa VideoSubFinder foi instalado, selecione
+"Opções de arquivo" e selecione a opção "Nomear arquivos como imagens
+de origem" e depois clique em “Salvar”, espere o final do processo e
+pode fechar o FineReader se desejar.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_21" class="lessonStep top">
+	        <h2 class="StepTitle">Gerando a legenda para revisão no Aegisub</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885853073_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885853073.png" alt="Gerando a legenda para revisão no Aegisub" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435885853073_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Clique em "Create Sub From TXT Results".</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_22" class="lessonStep top">
+	        <h2 class="StepTitle">Gerando a legenda para revisão no Aegisub</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435888904820_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435888904820.png" alt="Gerando a legenda para revisão no Aegisub" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435888904820_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Após isso você pode ir na pasta raiz do VideoSubFinder e veja que agora dentro da pasta há dois novos arquivos (<strong><font color="#ff0000">sub.ass</font></strong> e <strong><font color="#ff0000">sub.srt</font></strong>)
+, agora com os dialógos e os tempos das legendas. Agora você abre o
+Aegisub ou seu programa preferido e realiza um "refino" da legenda
+(Correcção dos tempos, erros de sintaxe e etc...).</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_23" class="lessonStep top">
+	        <h2 class="StepTitle">Corrigindo a legenda antes de abri no Aegisub</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436013565599_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436013565599.png" alt="Corrigindo a legenda antes de abri no Aegisub" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436013565599_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Uma característica"irritante"
+do VideoSubFinder é que às vezes ele reconhece legendas multilinhas
+como múltiplas linhas separadas aparecendo ao mesmo tempo e
+explicitamente posiciona uma acima da outra usando o \pos no arquivo
+.ass. O resultado é visualmente o mesmo, mas só até você alterar o
+tamanho das margens/fontes/etc. Para ser capaz de corrigir isso mais
+rápido, antes de abrir o arquivo .ass no Aegisub, eu normalmente abro o
+arquivo .ass em um editor de texto compatível com regex (expressões
+regulares) e excluo todas as tags ASS, substituindo a expressão
+"\{.*?\}" por uma sequência vazia. No meu caso eu uso e recomendo o
+editor Notepad++.</p>
+
+
+<p><strong>1.</strong> Abra a sua legenda .ass no Notepad++ depois clique no menu "Localizar".</p>
+
+
+<p><strong>2.</strong> Depois clique em "Substituir..."</p>
+
+
+<p>Obs: Para facilitar pode simplesmente usar o atalho <strong>Ctrl + H.</strong></p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_24" class="lessonStep top">
+	        <h2 class="StepTitle">Corrigindo a legenda antes de abri no Aegisub</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436013164454_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436013164454.png" alt="Corrigindo a legenda antes de abri no Aegisub" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436013164454_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Na caixa escrito localizar
+você vai colocar a expressão "\{.*?\}" sem as aspas, em "Substituir
+por" não coloque nada e se tiver algo apague.</p>
+
+
+<p>2. Altere o "Modo de busca" para "Expressão regular" (se não fizer
+isto o programa não vai encontrar o que precisa ser substituído).</p>
+
+
+<p>3. Clique em "Substituir todos", salve o arquivo e feche o editor.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_25" class="lessonStep top">
+	        <h2 class="StepTitle">Conclusão do trabalho (scenetiming / diagramação (typesetting) / adicionar linhas ausentes / QC / inserção músicas / etc.)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436205877103_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436205877103.png" alt="Conclusão do trabalho (scenetiming / diagramação (typesetting) / adicionar linhas ausentes / QC / inserção músicas / etc.)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436205877103_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>1. Abra o arquivo .ass no Aegisub, selecione todas as linhas e defina a margem vertical como 90.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_26" class="lessonStep top">
+	        <h2 class="StepTitle">Conclusão do trabalho (scenetiming / diagramação (typesetting) / adicionar linhas ausentes / QC / inserção músicas / etc.)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436205687835_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436205687835.png" alt="Conclusão do trabalho (scenetiming / diagramação (typesetting) / adicionar linhas ausentes / QC / inserção músicas / etc.)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436205687835_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>2. Abra o arquivo de vídeo original com as legendas hardsub (Vídeo -&gt; Abrir Vídeo).</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_27" class="lessonStep top">
+	        <h2 class="StepTitle">Conclusão do trabalho (scenetiming / diagramação (typesetting) / adicionar linhas ausentes / QC / inserção músicas / etc.)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436206205629_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436206205629.png" alt="Conclusão do trabalho (scenetiming / diagramação (typesetting) / adicionar linhas ausentes / QC / inserção músicas / etc.)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436206205629_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Vou linha por linha, comparando
+o texto reconhecido com o texto original e corrigindo os erros que eu
+encontro. Quando várias linhas foram reconhecidas como linhas
+separadas, selecione-as e use "Juntar (concatenar)", precedido por
+"Trocar Linhas" ou Shift-Up/Down se elas estão invertidas. Excluir
+todas as linhas com lixo desnecessário usando Ctrl-Del.</p>
+
+
+<p>E a última coisa a fazer é adicionar os estilos (fontes, karaoke, posters, etc.)</p>
+
+
+<p>Este processo deve levar cerca de 30~40 minutos por episódio. Se
+demorar muito mais, isso significa que o OCR não é muito eficiente para
+este show e você pode querer melhorar a qualidade de reconhecimento
+através da criação de um padrão personalizado ou mudando um pouco as
+configurações do VideoSubFinder. Abaixo deixo algumas dicas adicionais
+para melhorar ou agilizar o processo, são totalmente opcionais, você só
+realiza estas etapas se achar que valem a pena.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_28" class="lessonStep top">
+	        <h2 class="StepTitle">Dicas para melhorar o reconhecimento do processo, não são necessárias para o funcionamento normal do OCR (Opcional)</h2>
+		 <div class="instructions">
+  <p>As
+dicas abaixo tem a intenção de melhorar o reconhecimento dos caracteres
+por todos os programas necessários a conclusão deste tutorial, usar ou
+não fica à critério do usuário.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_29" class="lessonStep top">
+	        <h2 class="StepTitle">Modificando a sensibilidade do VideoSubFinder</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435869543936_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435869543936.png" alt="Modificando a sensibilidade do VideoSubFinder" height="418" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435869543936_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Definindo a sensibilidade do
+programa. Vá na Guia “Settings” e ajuste os valores no campo “Min Sum
+Color Difference”, ou onde eu prefiro, no campo “Min Sum Multiple Color
+Difference”. Por padrão, este valor vem ajustado em 400, mas você pode
+modificá-lo para obter maior exatidão.</p>
+
+
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_30" class="lessonStep top">
+	        <h2 class="StepTitle">Modificando a sensibilidade do VideoSubFinder</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435977377215_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435977377215.png" alt="Modificando a sensibilidade do VideoSubFinder" height="409" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435977377215_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Veja no quadro acima um
+exemplo: Observe que no quadro da esquerda (onde roda o vídeo) não há
+falas, mas devido a uma interpretação errada do programa, na tela da
+direita (caixa onde o programa mostra onde ele identificou a legenda
+marcando como pontos brancos) ele informa que há legendas no local onde
+há a faixa branca. Depois da modificação do valor para <strong>550</strong>, veja como fica:</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_31" class="lessonStep top">
+	        <h2 class="StepTitle">Modificando a sensibilidade do VideoSubFinder</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435977739007_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435977739007.png" alt="Modificando a sensibilidade do VideoSubFinder" height="411" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1435977739007_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Você pode verificar rapidamente se o valor é adequado clicando no botão “<strong>Test</strong>” ali ao lado. A melhor forma de encontrar um bom valor é procurando monossílabos como “<strong>Sim</strong>” ou “<strong>Não</strong>”
+que aparecerem sozinhos. Melhor ainda se as bordas forem parecidas com
+o plano de fundo em que aparecerem e aí você vai ajustando até
+encontrar o maior valor em que essa parte é identificada no quadro
+preto da direita. Você pode rodar o vídeo com o botão “<strong>Play</strong>” da tela da esquerda ou com a barra de tempo e quando achar um monossílabo clique no botão “<strong>Test</strong>”
+e vá modificando o valor até encontrar um adequado. É importante saber
+que valores baixos, como já mostrado, fazem o programa identificar
+legendas onde não há, mas valores altos fazem o programa não
+identificar as legendas. Como padrão, utilizo o valor <strong>500</strong>, mas posso modificar dependendo de cada vídeo. Esse valor que você estabeleceu pode ser transformado em padrão indo na guia “<strong>File</strong>” e depois “<strong>Save Settings</strong>”
+e aí toda vez que você abrir o programa ele já vai abrir com a sua
+configuração ou você pode salvar como uma configuração a parte em “<strong>Save Settings As...</strong>”.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_32" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436007923667_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436007923667.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436007923667_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Criar um novo padrão (Pattern) utilizando Ferramentas (Tools) / Editor de Padrões (Pattern Editor)</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_33" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436007789280_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436007789280.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436007789280_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Novo (New) /Dê um nome para o padrão e clique em OK e OK novamente.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_34" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436008018196_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436008018196.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436008018196_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Vá em Ferramentas (Tools) <strong>1</strong> / Opções (Options) <strong>2</strong>.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_35" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436008121137_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436008121137.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436008121137_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Na guia <strong>Ler</strong> (Read) certique-se que as opções <strong>Leitura completa</strong> (Thorough reading) e <strong>Utilize padrões internos e do usuário</strong> (Use built-in and user patterns) estejam selecionadas. Também devemos ativar a opção <strong>Leia com treinamento</strong> (Read with training).</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_36" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009018999_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009018999.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009018999_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p><strong>Selecione</strong> uma das páginas com legenda na lista da esquerda e pressione <strong>Página / Ler Página</strong> (Page/Read Page) ou use o atalho (<strong>Ctrl+R</strong>).</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_37" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009222458_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009222458.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009222458_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>FineReader irá pedir-lhe para introduzir quaisquer caracteres indefinidos, semelhante ao que o SubRip faz..</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_38" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009653013_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009653013.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436009653013_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>As vezes o programa não
+identifica a letra inteira, então é só ir puxando o contorno verde que
+existe em volta da letra até selecionar todo o caractere, depois clique
+em treinar e passe para a próxima letra. No exemplo acima a letra e w,
+mas o programa só detectou um pedaço e pensou que era u.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_39" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436010167117_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436010167117.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436010167117_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Aqui o programa selecionou
+corretamente todo o caractere, mas não identificou qual letra era, só
+digitar a letra correta e clicar em Treinar. Repita estes passos até
+que esteja satisfeito com os resultados do reconhecimento. Depois
+disso, desligue a opção Leia com treinamento (Read with training) e
+pressione o botão Ler (Read) na barra de ferramentas ou use o atalho
+(Ctrl + Shift + R) para fazer o OCR das páginas restantes.</p>
+
+
+<p>Quando você for fazer o OCR de outro episódio que pertença ao mesmo
+show, certifique-se de definir o seu novo padrão personalizado como o
+ativo no Editor de padrões (Pattern Editor).</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_40" class="lessonStep top">
+	        <h2 class="StepTitle">Criação de padrão personalizado no FineReader (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436010540761_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436010540761.png" alt="Criação de padrão personalizado no FineReader (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436010540761_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Se você digitar acidentalmente um caractere errado, você pode ir para o Editor de Padrões e excluí-lo.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_41" class="lessonStep top">
+	        <h2 class="StepTitle">Mexendo na temporização do Aegisub (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436017070386_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436017070386.png" alt="Mexendo na temporização do Aegisub (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436017070386_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p><strong>1.</strong> Vá ao menu "Temporização".</p>
+
+
+<p><strong>2.</strong> Depois clique em "Timing Post-Processor". </p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_42" class="lessonStep top">
+	        <h2 class="StepTitle">Mexendo na temporização do Aegisub (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436185349372_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436185349372.png" alt="Mexendo na temporização do Aegisub (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436185349372_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Minhas configurações normais
+são "Add lead-out 300ms" (dependendo dos timings originais, não seja
+necessário fazer isso); "Tornar as legendas adjacentes contínuas" com
+430ms de Max gap e Bias a barra deslocada até final próximo a palavra
+Fim; "Ajustar a keyframes" 5/ 4/ 10/ 8. Estas configurações variam de
+acordo com a fonte original.</p>
+</div>
+	</div>
+	<div class="clear" />
+	<div id="step_43" class="lessonStep top">
+	        <h2 class="StepTitle">Ajustando as linhas (Opcional)</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436207024869_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436207024869.png" alt="Ajustando as linhas (Opcional)" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436207024869_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> 
+	</div>
+	<div class="clear" />
+	<div id="step_44" class="lessonStep top">
+	        <h2 class="StepTitle">Dica extra: Em caso de apresentar erros tentar criar as imagens preto e branco</h2>
+		<div class="image fullsize">
+<a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436192134645_lg.png" rel="prettyPhoto" class="image" target="_blank"><img src="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436192134645.png" alt="Dica extra: Em caso de apresentar erros tentar criar as imagens preto e branco" height="312" width="580" /></a>
+<div class="caption"><a href="images/Extrair_legendas_fixas__hardsub__de_v_deos_usando_OCR/media_1436192134645_lg.png" rel="prettyPhoto" target="_blank">Zoom</a></div>
+</div> <div class="instructions">
+  <p>Às vezes o programa trava quando você clica em "<strong>Create Cleared TXT Images</strong>". Neste caso, você apenas tem que identificar qual a imagem provoca o problema e excluí-la.</p>
+
+
+<p>Quando você pressiona "<strong>Create Cleared TXT Images</strong>", o programa pega as imagens da subpasta "<strong>RBGImages</strong>", faz a limpeza da imagem e copia o resultado para a subpasta "<strong>TXTImages</strong>". Agora, o que você pode fazer é ir para a subpasta "<strong>TXTImages</strong>"
+e verificar qual a imagem é a última imagem que foi criada
+(classificada em ordem alfabética). Esta é a última imagem que foi
+processada com êxito. A próxima imagem causou o problema. Então, anote
+o nome da última (boa) imagem em "<strong>TXTImages</strong>", em seguida, vá para "<strong>RBGImages</strong>",
+localize o arquivo com o mesmo nome e apague o proximo arquivo
+(classificados em ordem alfabética), que é o que provoca o problema. Em
+seguida, pressione "<strong>Create Cleared TXT Images</strong>" novamente.</p>
+
+
+<p>Além disso, você deve dar uma verificada na imagem antes de apagá-la e também observar o <strong>timestamp</strong>
+(faz parte do nome do arquivo), porque se a imagem contém uma linha de
+legenda, esta linha vai estar ausente no arquivo .ass que for criado
+posteriormente e você terá que inseri-la manualmente depois. obs: O <strong>timestamp</strong> representa o instante que uma legenda aparece na tela e o instante que ela some.</p>
+</div>
+	</div>
+	<div class="clear" />
+
+		</div>
+	</div>	
+</body></html>
