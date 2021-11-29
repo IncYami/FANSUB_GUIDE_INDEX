@@ -1,0 +1,87 @@
+﻿<html><head><title>SCXvid Keyframes</title>
+<meta charset="utf-8">
+<style>
+td {font-family:Verdana; font-size:12; text-align:justify}
+a {color:668899; font-weight:bold}
+A:hover {color:e0e3e6}
+</style>
+</head>
+<body bgcolor=000000 text=808386 topmargin=0>
+
+<center><br>
+<table bgcolor=101316 cellpadding=15 cellspacing=2 width=860>
+<tr><td bgcolor=000000>
+<center><font size=5 color=446677><b>How to make xvid keyframes</center></td></tr>
+
+<tr><td bgcolor=000000>
+Things you need:<br><br>
+
+1. Install <a target="_blank" href="http://downloads.sourceforge.net/project/avisynth2/AviSynth%202.5/AviSynth%202.5.8/Avisynth_258.exe">Avisynth</a>
+<br><br>
+
+2. <a target="_blank" href="SCXvid.dll">SCXviD.dll</a><br>
+3. <a target="_blank" href="https://code.google.com/p/ffmpegsource/downloads/list">ffms2.dll</a>
+<br><br>
+Place these in the Avisynth\Plugins folder wherever you just installed it.
+<br><br>
+
+4. <a target="_blank" href="AVSMeter178.zip">AVSMeter</a>
+<br><br>
+Put the exe in a system folder, like C:\Windows.<br>
+If you know what you're doing, you can put it in any folder and add it to your path.<br>
+You could also put it in whatever folder you run the batch from.
+<br><br>
+
+5. <a href="scx.zip">This batch script</a>  (below if you don't want to download it)
+<br><br>
+
+<font color=667788>
+@echo off<br>
+echo Making SCXvid keyframes...<br>
+set video=%~1<br>
+set video2=%~n1<br>
+echo FFvideosource("%video%") > "%video2%_keyframes.avs"<br>
+echo SCXvid("%video2%_keyframes.log") >> "%video2%_keyframes.avs"<br>
+avsmeter "%video2%_keyframes.avs"<br>
+del "%video2%_keyframes.avs"<br>
+del "%video%.ffindex"<br>
+echo Keyframes complete<br>
+@pause<br><br><br>
+</font>
+
+Paste this into a text file and rename the file to keyframes.bat (or whatever.bat you want).<br>
+If you want to have all keyframes in the same folder, change the scxvid line to<br>
+<font color=667788>echo SCXvid("D:\your_path_here\%video2%_keyframes.log") >> "%video2%_keyframes.avs"</font><br>
+You can drag your video file onto the batch script, or you can open cmd.exe in the video's folder and type:<br>
+<font color=667788>keyframes "your_video.mkv"</font><br>
+where keyframes is the name of your batch file and the other thing is your video no matter what the extension.<br>
+You don't need the quotation marks if there's no space in the filename.<br>
+You'll see progress as it encodes. When done, go to "Video - Open Keyframes" in Aegisub and select the .log file.<br>
+If you're in a hurry, you can load it while it's being generated, and it will load whatever's done so far.<br>
+Don't forget to reload it before you time the part that wasn't done before.
+<br><br><hr color=101316><br>
+
+
+
+
+SCXvid keyframe generation script v2.0 (This is supposedly faster, but it doesn't work for me, so feel free to try.)<br>
+<br>
+1. Download standalone SCXvid <a target="_blank" href="https://github.com/soyokaze/SCXvid-standalone/releases">here</a><br>
+2. Download FFmpeg <a target="_blank" href="http://ffmpeg.zeranoe.com/builds/">here</a><br>
+3. Create batch script below:<br>
+<br>
+<font color=667788>
+@echo off<br>
+echo Making SCXvid keyframes...<br>
+set video=%~1<br>
+set video2=%~n1<br>
+ffmpeg -i %video% -f yuv4mpegpipe -vf scale=640:360 -pix_fmt yuv420p -vsync drop - | SCXvid.exe %video2%_keyframes.log<br>
+echo Keyframes complete<br>
+@pause<br>
+</font>
+<br>
+4. Run batch script and call your video file.<br>
+<br>
+Only works with 4:2:0 video, but this shouldn't be a problem 99% of the time.<br>
+
+
